@@ -14,6 +14,8 @@ O projeto foi baseado no 4º módulo da trilha ReactJS do Ignite. Além do que f
 - Instale as dependências com 
 ```yarn```
 - Rode as migrations com ``` yarn prisma db push ```
-- Rode as seeds com ```yarn seed```
 - Inicie o servidor com ```yarn dev```
 - Agora você pode acessar localhost:3000 do seu navegador.
+
+- Faça login com o email: ```administrador@dashgo.net```
+- Senha: ```admin```
