@@ -46,7 +46,7 @@ export default async function sessions(
       res.statusCode = 500;
       return res.json({
          error: true,
-         message: "Erro interno do servidor"
+         message: error
       });
    }
 }

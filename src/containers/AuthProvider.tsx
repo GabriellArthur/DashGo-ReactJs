@@ -30,19 +30,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
    async function signIn(credentials: SignInCredentials) {
       try {
          const { data } = await api.post("/sessions", credentials);
+         if (!data.error) {
 
-         setUser({
-            id: data.id,
-            email: data.email,
-            createdAt: data.createdAt,
-            name: data.name,
-            token: data.token
-         });
+            setUser({
+               id: data.id,
+               email: data.email,
+               createdAt: data.createdAt,
+               name: data.name,
+               token: data.token
+            });
 
-         setCookie(undefined, "@dashgo.token", data.token);
+            setCookie(undefined, "@dashgo.token", data.token);
 
-         router.push("/dashboard");
-      } catch (error) { }
+            router.push("/dashboard");
+         } else {
+            toast({
+               title: data.message,
+               status: "error"
+            })
+         }
+      } catch (error) {
+         console.log(error);
+      }
    }
 
    function signOut() {
@@ -55,7 +64,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const cookies = parseCookies();
       const token = cookies["@dashgo.token"];
 
-      if (token) {
+      console.log("TOKEN:" + token);
+
+      if (token != 'undefined') {
          api
             .get("/me", { headers: { Authorization: `Bearer ${token}` } })
             .then(response => {
@@ -64,9 +75,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
                   token
                });
 
-               if (router.asPath === "/") {
-                  router.push("/dashboard");
-               }
+            }).catch(response => {
+               toast({
+                  title: response,
+                  status: "error"
+               })
             });
       }
    }, []);

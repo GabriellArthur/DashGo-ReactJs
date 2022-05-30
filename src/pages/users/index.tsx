@@ -40,7 +40,7 @@ export default function UserList() {
   const deleteUser = useMutation(
     async (id: number) => {
       const cookies = parseCookies();
-      const response = await api.delete(`users/${id}`, {
+      const response = await api.delete(`/users/${id}`, {
         headers: {
           Authorization: `Bearer ${cookies["@dashgo.token"]}`
         }
