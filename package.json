@@ -6,7 +6,7 @@
       "dev": "next dev && prisma db push && ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\" prisma/seed.ts",
       "build": "next build",
       "start": "next start",
-      "migrate": "prisma db push && prisma migrate deploy && ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\" prisma/seed.ts"
+      "migrate": "prisma migrate deploy  && prisma db push && ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\" prisma/seed.ts"
    },
    "dependencies": {
       "@chakra-ui/core": "^0.8.0",
